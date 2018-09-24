@@ -13,6 +13,22 @@ import java.net.Socket;
 import java.util.Arrays;
 import java.util.concurrent.atomic.AtomicBoolean;
 
+/*
+    Class to handle connecting Tittle to a wifi network. Flow should go like this:
+    1. Set Tittle to AP mode (press power button for 5 seconds, and then 3 seconds)
+    2. Connect your phone to the Tittle-AP. Tittle will be listening for connections at 192.168.1.1
+       on port 9999
+    3. Make the TCP connection
+    4. Send the name of the wifi network, password and your IP in Tittle-AP network to Tittle
+    5. Tittle will ACK the packet over the TCP connection. After this socket wont be used
+    6. Tittle will attempt to connect to the wifi. After it has succesfully connected it will
+       try to make a TCP connection to your IP at port 9999 and send it's IP in the Wifi network it
+       connected to.
+    7. Once Tittle has responded, open a new Socket (Still in Tittle-AP), and send FIN package, which
+       will make Tittle exit the AP mode.
+    8. (After this switch your phone back to the Wifi Tittle connected to. You can now issue commands
+       to Tittle over TCP)
+ */
 public class StandardConfig implements SetupListener {
     private static final String TAG = StandardConfig.class.getSimpleName();
     private static final String TITTLE_AP_IP = "192.168.1.1";
@@ -39,6 +55,7 @@ public class StandardConfig implements SetupListener {
         this.password = password;
         this.listener = listener;
     }
+
 
     public void connect() {
         this.socket = new Socket();

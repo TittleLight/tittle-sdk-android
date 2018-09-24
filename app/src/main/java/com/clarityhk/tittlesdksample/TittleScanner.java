@@ -13,6 +13,11 @@ import java.net.Socket;
 import java.net.SocketException;
 import java.util.Arrays;
 
+/*
+    Scan for Tittles in your current network. Your phone should broadcast packets over UDP to which
+    (all) Tittle devices in your network will respond to (over TCP). The response contains Tittles
+    name, IP and Mac address.
+ */
 class TittleScanner {
     private final static String TAG = TittleScanner.class.getSimpleName();
     private static final int BROADCAST_PORT = 10000;
