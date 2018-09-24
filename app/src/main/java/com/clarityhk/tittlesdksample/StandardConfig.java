@@ -50,15 +50,19 @@ public class StandardConfig implements SetupListener {
     }
 
     public void cancel(boolean callListener) {
-        if (callListener) canceled.set(true);
         Log.d(TAG, "Cancelled.");
-        if (socket != null && !socket.isClosed()) {
-            try {
-                socket.close();
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-        }
+
+        if (callListener && !canceled.get()) listener.onConfigFailed();
+        canceled.set(true);
+
+        closeSocket();
+        closeServerSocket();
+        if (receiveTittleInfoThread != null) receiveTittleInfoThread.interrupt();
+        if (receiveSSIDAckThread != null) receiveSSIDAckThread.interrupt();
+        if (sendSSIDThread != null) sendSSIDThread.interrupt();
+    }
+
+    private void closeServerSocket() {
         if (serverSocket != null && !serverSocket.isClosed()) {
             try {
                 serverSocket.close();
@@ -66,9 +70,16 @@ public class StandardConfig implements SetupListener {
                 e.printStackTrace();
             }
         }
-        if (receiveTittleInfoThread != null) receiveTittleInfoThread.interrupt();
-        if (receiveSSIDAckThread != null) receiveSSIDAckThread.interrupt();
-        if (sendSSIDThread != null) sendSSIDThread.interrupt();
+    }
+
+    private void closeSocket() {
+        if (socket != null && !socket.isClosed()) {
+            try {
+                socket.close();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
     }
 
     public void onConnected() {
@@ -181,13 +192,7 @@ public class StandardConfig implements SetupListener {
                     e.printStackTrace();
                 }
             }
-            if (serverSocket != null && !serverSocket.isClosed()) {
-                try {
-                    serverSocket.close();
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-            }
+            closeServerSocket();
         }
     }
 
@@ -205,7 +210,7 @@ public class StandardConfig implements SetupListener {
             } catch (IOException e) {
                 Log.d(TAG, "Error while listening to SSID response");
                 e.printStackTrace();
-                cancel();
+                listener.cancel(true);
             }
         }
 
@@ -249,7 +254,7 @@ public class StandardConfig implements SetupListener {
             } catch (IOException e) {
                 Log.e(TAG, "Error while sending SSID to Tittle");
                 e.printStackTrace();
-                cancel(true);
+                listener.cancel(true);
             }
         }
 
@@ -277,7 +282,7 @@ public class StandardConfig implements SetupListener {
             } catch (IOException e) {
                 Log.e(TAG, "Error while connecting to Tittle");
                 e.printStackTrace();
-                cancel(true);
+                listener.cancel(true);
             }
         }
     }
@@ -289,7 +294,7 @@ public class StandardConfig implements SetupListener {
 }
 
 interface SetupListener {
-    void cancel();
+    void cancel(boolean callListener);
 
     void onConnected();
 

@@ -2,14 +2,6 @@ package com.clarityhk.tittlesdksample;
 
 import android.util.Log;
 
-import java.io.DataOutputStream;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.OutputStream;
-import java.net.InetAddress;
-import java.net.Socket;
-import java.util.Arrays;
-
 interface CommandResponseListener {
     void onResponseReceived(byte[] data);
 }
