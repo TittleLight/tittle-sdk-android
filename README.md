@@ -36,8 +36,8 @@ Add permissions for `android.permission.INTERNET` and `android.permission.ACCESS
 SDK currently supports three actions:
 	
 1. [Connect Tittle to Wifi](#Connect-Tittle-to-Wifi)
-2. [Set Light Mode](#light_mode)
-3. [Search Tittles](#search_tittles)
+2. [Send commands to Tittle](#Send-commands-to-Tittle)
+3. [Search Tittles](#Search-Tittles)
 
 
 
@@ -77,7 +77,6 @@ config.connect();
 
 - Step 3. If the config succeeds, listener callback will be called with the IP address of the Tittle in the network it connected to. To start sending commands, switch your phone to the network that Tittle connected to.
 
-<span id="light_mode"></span>
 ### Send commands to Tittle
 
 To send commands to Tittle use TittleLightControl class. Create an instance of the class with
@@ -94,7 +93,6 @@ tittle.setLightMode(255, 255, 255, 255); // RGB color and ligth intensity as int
 tittle.setLightMode(255, 255, 255, 0); // Turn off the light
 ```
 	
-<span id="search_tittles"></span>
 ### Search Tittles
 
 If there are Tittle's already connected to wifi, you can search them with `TittleScanner` class.
