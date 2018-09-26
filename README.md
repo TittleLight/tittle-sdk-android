@@ -1,4 +1,4 @@
-# Tittle Framework
+# Tittle SDK
 
 	Version: 1.0
 	Minimum SDK version: 21
@@ -6,7 +6,7 @@
 		
 ## Overview
 
-Tittle framework allows you to set up, search and control Tittle lights.
+Tittle SDK allows you to set up, search and control Tittle lights.
 	
 ## Installation 
 
@@ -33,7 +33,7 @@ Add permissions for `android.permission.INTERNET` and `android.permission.ACCESS
 
 ## Usage
 
-	Description about this section
+SDK currently supports three actions:
 	
 1. [Connect Tittle to Wifi](#connect)
 2. [Set Light Mode](#light_mode)
@@ -46,7 +46,7 @@ Add permissions for `android.permission.INTERNET` and `android.permission.ACCESS
 	
 Tittle uses Wifi to receive commands from your Android device. Tittle app has two ways to connect to wifi "Smart config" and "Standard config". The SDK only supports Standard config for the time being.
 
-Tittle Light support Smart Config or standard config for wifi configuration. This Framework now only support Standard Config.
+Tittle Light support Smart Config or standard config for wifi configuration. This SDK now only support Standard Config.
 
 - Step 1. Switch the Tittle Light to AP mode.
 		
@@ -61,10 +61,16 @@ Tittle Light support Smart Config or standard config for wifi configuration. Thi
 - Step 2. Once your phone has connected to "Tittle-AP", setup connection with Tittle
  
 ```java
-String ssid = "My wifi name"; // The name of the network to which you want to connect your Tittle to
-String password = "wifi password"; // Password of the network to connect
-int timeout = 45000; // Timeout for the config in ms. Config can take 30+ seconds.
-// listener needs to implement the StandardConfig.StandardConfigListener interface, and will be called
+// The name of the network to which you want to connect your Tittle to
+String ssid = "My wifi name"; 
+
+// Password of the network to connect
+String password = "wifi password"; 
+
+// Timeout for the config in ms. Config can take 30+ seconds so long timeout is necessary.
+int timeout = 45000; 
+
+// listener class needs to implement the StandardConfig.StandardConfigListener interface, and will be called
 // when the config has completed or failed / time'd out
 config = new StandardConfig(ssid, password, timeout, listener);
 config.connect();		
