@@ -14,7 +14,7 @@ import java.util.HashSet;
 import java.util.Iterator;
 import java.util.Set;
 
-public class MainActivity extends AppCompatActivity implements StandardConfig.StandardConfigListener, TittleScanner.TittleScanListener {
+public class MainActivity extends AppCompatActivity implements StandardConfig.StandardConfigListener, TittleScanner.TittleScanListener, TittleLightControl.TittleLightControlListener {
     private static final String TAG = MainActivity.class.getSimpleName();
     TittleLightControl tittle;
     Set<DeviceInfo> tittles = new HashSet<>();
@@ -44,7 +44,7 @@ public class MainActivity extends AppCompatActivity implements StandardConfig.St
             @Override
             public void onClick(View view) {
                 EditText ipField = findViewById(R.id.tittleIp);
-                tittle = new TittleLightControl(ipField.getText().toString());
+                tittle = new TittleLightControl(ipField.getText().toString(), self);
                 int red = (int) Math.floor(Math.random() * 255);
                 int green = (int) Math.floor(Math.random() * 255);
                 int blue = (int) Math.floor(Math.random() * 255);
@@ -108,6 +108,15 @@ public class MainActivity extends AppCompatActivity implements StandardConfig.St
                 Log.d(TAG, "Finished scanning Tittles");
             }
         });
+    }
+
+    @Override
+    public void lightModeSet() {
+        Log.d(TAG, "Light mode set");
+    }
+
+    public void failedToSetLightMode() {
+        Log.d(TAG, "Failed to set light mode");
     }
 }
 

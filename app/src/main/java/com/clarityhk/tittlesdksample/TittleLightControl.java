@@ -2,18 +2,16 @@ package com.clarityhk.tittlesdksample;
 
 import android.util.Log;
 
-interface CommandResponseListener {
-    void onResponseReceived(byte[] data);
-}
-
-class TittleLightControl implements CommandResponseListener {
+class TittleLightControl implements RunCommand.CommandListener {
     private final static String TAG = TittleLightControl.class.getSimpleName();
 
     private final static int PORT = 9999;
     private final Connection connection;
+    private final TittleLightControlListener listener;
 
-    public TittleLightControl(String tittleIp) {
+    public TittleLightControl(String tittleIp, TittleLightControlListener listener) {
         this.connection = new Connection(tittleIp, PORT);
+        this.listener = listener;
     }
 
     private boolean isValidValue(int value) {
@@ -31,12 +29,22 @@ class TittleLightControl implements CommandResponseListener {
             throw new RuntimeException("Invalid intensity, expected value between 0 and 255");
 
         Log.d(TAG, "Setting light mode");
-        new Thread(new RunCommand(this.connection, TittleCommands.createLightOnPacket(red, green, blue, intensity))).start();
+        new Thread(new RunCommand(this.connection, TittleCommands.createLightOnPacket(red, green, blue, intensity), this)).start();
     }
 
     @Override
     public void onResponseReceived(byte[] data) {
-        Log.d(TAG, "Light mode set");
+        this.listener.lightModeSet();
+    }
+
+    public void commandFailed() {
+        Log.d(TAG, "Command failed");
+        this.listener.failedToSetLightMode();
+    }
+
+    interface TittleLightControlListener {
+        void lightModeSet();
+        void failedToSetLightMode();
     }
 }
 

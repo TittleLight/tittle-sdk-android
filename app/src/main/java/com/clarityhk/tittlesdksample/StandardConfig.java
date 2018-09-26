@@ -207,6 +207,7 @@ public class StandardConfig implements SetupListener {
                 } catch (IOException e) {
                     Log.d(TAG, "Error while listening for Tittle IP");
                     e.printStackTrace();
+                    listener.cancel(true);
                 }
             }
             closeServerSocket();

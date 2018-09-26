@@ -18,7 +18,11 @@ class Connection {
     }
 
     public void connect() throws IOException {
-        if (socket == null || socket.isClosed()) socket = new Socket(tittleIp, port);
+        if (socket == null || socket.isClosed()) {
+            Log.d(TAG, "Socket closed, recreating");
+            socket = new Socket(tittleIp, port);
+            socket.setReuseAddress(true);
+        }
         Log.d(TAG, "Connected to " + this.tittleIp + ":" + this.port);
     }
 }
