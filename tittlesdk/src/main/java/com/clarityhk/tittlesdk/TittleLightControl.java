@@ -14,6 +14,10 @@ public class TittleLightControl implements RunCommand.CommandListener {
         this.listener = listener;
     }
 
+    public void disconnect() {
+        this.connection.disconnect();
+    }
+
     private boolean isValidValue(int value) {
         return value >= 0 && value <= 255;
     }

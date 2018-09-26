@@ -97,6 +97,8 @@ class RunCommand implements Runnable {
                 e.printStackTrace();
                 listener.commandFailed();
             } finally {
+                // Close the input stream. This also closes the socket, which seems to make things
+                // work better.
                 if (input != null) {
                     try {
                         input.close();

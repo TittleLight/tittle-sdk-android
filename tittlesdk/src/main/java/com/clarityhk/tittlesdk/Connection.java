@@ -25,4 +25,14 @@ class Connection {
         }
         Log.d(TAG, "Connected to " + this.tittleIp + ":" + this.port);
     }
+
+    public void disconnect() {
+        if (socket != null && socket.isConnected()) {
+            try {
+                socket.close();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+    }
 }
