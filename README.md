@@ -10,8 +10,8 @@ Tittle SDK allows you to set up, search and control Tittle lights.
 	
 ## Installation 
 
-Download the AAR file from https://github.com/clarityhk/tittle-sdk-samples/tree/master/distribution
-Add AAR file as a dependency to your project (see https://developer.android.com/studio/projects/android-library for more detailed instructions)
+* Download the AAR file from https://github.com/clarityhk/tittle-sdk-samples/tree/master/distribution
+* Add AAR file as a dependency to your project (see https://developer.android.com/studio/projects/android-library for more detailed instructions)
 
 Make sure settings.gradle has the library listed at the top:
 ```gradle
