@@ -35,9 +35,9 @@ Add permissions for `android.permission.INTERNET` and `android.permission.ACCESS
 
 SDK currently supports three actions:
 	
-1. [Connect Tittle to Wifi](#Connect-Tittle-to-Wifi)
-2. [Send commands to Tittle](#Send-commands-to-Tittle)
-3. [Search Tittles](#Search-Tittles)
+1. [Connect Tittle to Wifi](#connect-tittle-to-wifi)
+2. [Send commands to Tittle](#send-commands-to-tittle)
+3. [Search Tittles](#search-tittles)
 
 
 
