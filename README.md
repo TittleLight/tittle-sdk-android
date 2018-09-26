@@ -66,12 +66,16 @@ String ssid = "My wifi name";
 // Password of the network to connect
 String password = "wifi password"; 
 
+// Get the ip of the phone (in the Tittle-AP network). Make sure you have connected your phone to the
+// Tittle-AP when you run this.
+InetAddress handsetIp = InetAddress.getByName(Util.getIPAddress());
+
 // Timeout for the config in ms. Config can take 30+ seconds so long timeout is necessary.
 int timeout = 45000; 
 
 // listener class needs to implement the StandardConfig.StandardConfigListener interface, and will be called
 // when the config has completed or failed / time'd out
-config = new StandardConfig(ssid, password, timeout, listener);
+config = new StandardConfig(ssid, password, handsetIp, timeout, listener);
 config.connect();		
 ```
 
