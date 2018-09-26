@@ -1,4 +1,4 @@
-package com.clarityhk.tittlesdksample;
+package com.clarityhk.tittlesdk;
 
 public class DeviceInfo {
     public final String name;

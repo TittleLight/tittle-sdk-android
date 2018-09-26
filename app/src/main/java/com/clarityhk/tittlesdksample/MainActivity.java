@@ -8,6 +8,12 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.clarityhk.tittlesdk.DeviceInfo;
+import com.clarityhk.tittlesdk.StandardConfig;
+import com.clarityhk.tittlesdk.TittleLightControl;
+import com.clarityhk.tittlesdk.TittleScanner;
+import com.clarityhk.tittlesdk.Util;
+
 import java.net.InetAddress;
 import java.net.UnknownHostException;
 import java.util.HashSet;

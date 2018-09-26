@@ -1,4 +1,4 @@
-package com.clarityhk.tittlesdksample;
+package com.clarityhk.tittlesdk;
 
 import android.util.Log;
 
@@ -18,7 +18,7 @@ import java.util.Arrays;
     (all) Tittle devices in your network will respond to (over TCP). The response contains Tittles
     name, IP and Mac address.
  */
-class TittleScanner {
+public class TittleScanner {
     private final static String TAG = TittleScanner.class.getSimpleName();
     private static final int BROADCAST_PORT = 10000;
     private static final int TCP_SERVER_PORT = 9999;
@@ -152,7 +152,7 @@ class TittleScanner {
         if (broadcastSocket != null && !broadcastSocket.isClosed()) broadcastSocket.close();
     }
 
-    interface TittleScanListener {
+    public interface TittleScanListener {
         void onTittleFound(DeviceInfo deviceInfo);
         void scanComplete();
     }

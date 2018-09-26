@@ -1,8 +1,8 @@
-package com.clarityhk.tittlesdksample;
+package com.clarityhk.tittlesdk;
 
 import android.util.Log;
 
-class TittleLightControl implements RunCommand.CommandListener {
+public class TittleLightControl implements RunCommand.CommandListener {
     private final static String TAG = TittleLightControl.class.getSimpleName();
 
     private final static int PORT = 9999;
@@ -42,7 +42,7 @@ class TittleLightControl implements RunCommand.CommandListener {
         this.listener.failedToSetLightMode();
     }
 
-    interface TittleLightControlListener {
+    public interface TittleLightControlListener {
         void lightModeSet();
         void failedToSetLightMode();
     }

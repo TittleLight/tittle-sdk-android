@@ -1,4 +1,4 @@
-package com.clarityhk.tittlesdksample;
+package com.clarityhk.tittlesdk;
 
 import java.net.InetAddress;
 import java.net.UnknownHostException;

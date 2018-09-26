@@ -1,4 +1,4 @@
-package com.clarityhk.tittlesdksample;
+package com.clarityhk.tittlesdk;
 
 import android.util.Log;
 

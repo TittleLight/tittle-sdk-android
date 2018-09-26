@@ -1,4 +1,4 @@
-package com.clarityhk.tittlesdksample;
+package com.clarityhk.tittlesdk;
 
 import android.util.Log;
 
@@ -305,7 +305,7 @@ public class StandardConfig implements SetupListener {
         }
     }
 
-    interface StandardConfigListener {
+    public interface StandardConfigListener {
         void onConfigComplete(String ip);
         void onConfigFailed();
     }

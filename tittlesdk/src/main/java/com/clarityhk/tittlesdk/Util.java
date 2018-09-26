@@ -1,4 +1,4 @@
-package com.clarityhk.tittlesdksample;
+package com.clarityhk.tittlesdk;
 
 import java.net.InetAddress;
 import java.net.InterfaceAddress;
@@ -6,7 +6,7 @@ import java.net.NetworkInterface;
 import java.util.Collections;
 import java.util.List;
 
-class Util {
+public class Util {
     public static String toHexString(byte[] bytes) {
         StringBuilder sb = new StringBuilder();
         for (byte b : bytes) sb.append(String.format("%02X ", b));
