@@ -37,6 +37,7 @@ public class StandardConfig implements SetupListener {
 
     private final String password;
     private final String ssid;
+    private final InetAddress handsetIp;
     private Socket socket;
     private ServerSocket serverSocket;
     private StandardConfigListener listener;
@@ -49,10 +50,11 @@ public class StandardConfig implements SetupListener {
     private AtomicBoolean canceled = new AtomicBoolean(false);
     private final int timeout;
 
-    public StandardConfig(String ssid, String password, int timeout, StandardConfigListener listener) {
-        this.timeout = timeout;
+    public StandardConfig(String ssid, String password, InetAddress handsetIp, int timeout, StandardConfigListener listener) {
         this.ssid = ssid;
         this.password = password;
+        this.handsetIp = handsetIp;
+        this.timeout = timeout;
         this.listener = listener;
     }
 
@@ -108,7 +110,7 @@ public class StandardConfig implements SetupListener {
         receiveSSIDAckThread.start();
 
         // Send SSID and password to Tittle
-        sendSSIDThread = new Thread(new SendSSIDRunnable(this, this.ssid, this.password));
+        sendSSIDThread = new Thread(new SendSSIDRunnable(this, this.ssid, this.password, this.handsetIp));
         sendSSIDThread.start();
 
         // Start listening for a response to Tittle IP
@@ -253,10 +255,6 @@ public class StandardConfig implements SetupListener {
         private final String password;
         private InetAddress handsetIp;
 
-        SendSSIDRunnable(SetupListener listener, String ssid, String password) {
-            this(listener, ssid, password, null);
-        }
-
         SendSSIDRunnable(SetupListener listener, String ssid, String password, InetAddress handsetIp) {
             this.listener = listener;
             this.ssid = ssid;
@@ -267,7 +265,7 @@ public class StandardConfig implements SetupListener {
         @Override
         public void run() {
             try {
-                sendSSID(this.ssid, this.password);
+                sendSSID(this.ssid, this.password, this.handsetIp);
                 this.listener.onSSIDSent();
             } catch (IOException e) {
                 Log.e(TAG, "Error while sending SSID to Tittle");
@@ -276,8 +274,8 @@ public class StandardConfig implements SetupListener {
             }
         }
 
-        private void sendSSID(String ssid, String password) throws IOException {
-            byte[] buffer = TittleCommands.createStartStandardConfigPacket(ssid, password);
+        private void sendSSID(String ssid, String password, InetAddress handsetIp) throws IOException {
+            byte[] buffer = TittleCommands.createStartStandardConfigPacket(ssid, password, handsetIp);
             OutputStream out = socket.getOutputStream();
             DataOutputStream dataOut = new DataOutputStream(out);
             dataOut.write(buffer, 0, buffer.length);

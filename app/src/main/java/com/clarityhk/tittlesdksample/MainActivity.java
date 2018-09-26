@@ -40,8 +40,15 @@ public class MainActivity extends AppCompatActivity implements StandardConfig.St
             public void onClick(View view) {
                 EditText ssidInput = findViewById(R.id.ssidName);
                 EditText passwordInput = findViewById(R.id.wifiPassword);
-                config = new StandardConfig(ssidInput.getText().toString(), passwordInput.getText().toString(), 45000, self);
-                config.connect();
+
+                try {
+                    InetAddress handsetIp = InetAddress.getByName(Util.getIPAddress());
+                    config = new StandardConfig(ssidInput.getText().toString(), passwordInput.getText().toString(), handsetIp,45000, self);
+                    config.connect();
+                } catch (UnknownHostException e) {
+                    e.printStackTrace();
+                }
+
             }
         });
 
