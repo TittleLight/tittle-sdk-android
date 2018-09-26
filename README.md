@@ -11,6 +11,26 @@
 	
 ## Installation 
 
+Download the AAR file from https://github.com/clarityhk/tittle-sdk-samples/tree/master/distribution
+Add AAR file as a dependency to your project (see https://developer.android.com/studio/projects/android-library for more detailed instructions)
+
+Make sure settings.gradle has the library listed at the top:
+```gradle
+include ':app', ':tittlesdk-release'
+```
+
+Add dependency to the SDK to build.gradle:
+```gradle
+implementation project(":tittlesdk-release")
+```
+
+Add permissions for `android.permission.INTERNET` and `android.permission.ACCESS_NETWORK_STATE` to your ApplicationManifest.xml
+```xml
+<!-- INTERNET PERMISSION IS NEEDED FOR CONNECTING TO TITTLE VIA WIFI -->
+<uses-permission android:name="android.permission.INTERNET" />
+<uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+```
+
 
 ## Usage
 
