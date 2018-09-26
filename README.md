@@ -41,15 +41,15 @@ Tittle Light support Smart Config or standard config for wifi configuration. Thi
 
 - Step 2. Once your phone has connected to "Tittle-AP", setup connection with Tittle
  
-	```
-	String ssid = "My wifi name"; // The name of the network to which you want to connect your Tittle to
-	String password = "wifi password"; // Password of the network to connect
-	int timeout = 45000; // Timeout for the config in ms. Config can take 30+ seconds.
-	// listener needs to implement the StandardConfig.StandardConfigListener interface, and will be called
-	// when the config has completed or failed / time'd out
-    config = new StandardConfig(ssid, password, timeout, listener);
-    config.connect();		
-	```
+```java
+String ssid = "My wifi name"; // The name of the network to which you want to connect your Tittle to
+String password = "wifi password"; // Password of the network to connect
+int timeout = 45000; // Timeout for the config in ms. Config can take 30+ seconds.
+// listener needs to implement the StandardConfig.StandardConfigListener interface, and will be called
+// when the config has completed or failed / time'd out
+config = new StandardConfig(ssid, password, timeout, listener);
+config.connect();		
+```
 
 - Step 3. If the config succeeds, listener callback will be called with the IP address of the Tittle in the network it connected to. To start sending commands, switch your phone to the network that Tittle connected to.
 
@@ -57,7 +57,7 @@ Tittle Light support Smart Config or standard config for wifi configuration. Thi
 ### Send commands to Tittle
 
 To send commands to Tittle use TittleLightControl class. Create an instance of the class with
-```
+```java
 String ip = "192.168.1.2" // IP of the tittle device in your network
 TittleLightControl tittle = new TittleLightControl(ip, listener);
 ```
@@ -65,7 +65,7 @@ TittleLightControl tittle = new TittleLightControl(ip, listener);
 
 Use `setLightMode` to switch on the light. Set intensity to 0 to switch light off.
 
-```
+```java
 tittle.setLightMode(255, 255, 255, 255); // RGB color and ligth intensity as integers in 0 - 255 range
 tittle.setLightMode(255, 255, 255, 0); // Turn off the light
 ```
@@ -75,7 +75,7 @@ tittle.setLightMode(255, 255, 255, 0); // Turn off the light
 
 If there are Tittle's already connected to wifi, you can search them with `TittleScanner` class.
 
-```
+```java
 // First get the IP address of your device
 InetAddress handsetIp = InetAddress.getByName(Util.getIPAddress());
 TittleScanner scanner = new TittleScanner(handsetIp);
