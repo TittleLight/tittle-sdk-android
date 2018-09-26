@@ -104,4 +104,7 @@ int timeout = 20000; // How long should we scan in ms. Broadcasts to Tittle are 
 scanner.scan(timeout, listener);
 ```
 
+## Sample project
+
+See sample project at https://github.com/clarityhk/tittle-sdk-samples/tree/master/android_sample
 
