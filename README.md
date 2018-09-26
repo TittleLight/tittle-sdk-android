@@ -35,14 +35,13 @@ Add permissions for `android.permission.INTERNET` and `android.permission.ACCESS
 
 SDK currently supports three actions:
 	
-1. [Connect Tittle to Wifi](#connect)
+1. [Connect Tittle to Wifi](#Connect-Tittle-to-Wifi)
 2. [Set Light Mode](#light_mode)
 3. [Search Tittles](#search_tittles)
 
 
 
-<span id="connect"></span>
-### Connect Tittle to Wifi
+### Connect-Tittle-to-Wifi
 	
 Tittle uses Wifi to receive commands from your Android device. Tittle app has two ways to connect to wifi "Smart config" and "Standard config". The SDK only supports Standard config for the time being.
 
