@@ -41,7 +41,7 @@ SDK currently supports three actions:
 
 
 
-### Connect-Tittle-to-Wifi
+### Connect Tittle to Wifi
 	
 Tittle uses Wifi to receive commands from your Android device. Tittle app has two ways to connect to wifi "Smart config" and "Standard config". The SDK only supports Standard config for the time being.
 
