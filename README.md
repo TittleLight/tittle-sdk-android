@@ -6,8 +6,7 @@
 		
 ## Overview
 
-	This is the first vesion of the Tittle Light Framework. 
-	The purpose of this framework is ......
+Tittle framework allows you to set up, search and control Tittle lights.
 	
 ## Installation 
 
