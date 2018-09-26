@@ -101,8 +101,11 @@ If there are Tittle's already connected to wifi, you can search them with `Tittl
 // First get the IP address of your device
 InetAddress handsetIp = InetAddress.getByName(Util.getIPAddress());
 TittleScanner scanner = new TittleScanner(handsetIp);
-int timeout = 20000; // How long should we scan in ms. Broadcasts to Tittle are sent every 5 seconds, so use multiple's of 5000
-// listener should implement TittleScanner.TittleScannerListener interface. Listener will be called each time Tittle's are found and once the scan has finished.
+// How long should we scan in ms. Broadcasts to Tittle are sent every 5 seconds, 
+// so use multiple's of 5000
+int timeout = 20000; 
+// listener should implement TittleScanner.TittleScannerListener interface. Listener 
+// will be called each time Tittle's are found and once the scan has finished.
 scanner.scan(timeout, listener);
 ```
 
